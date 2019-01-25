@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { addMessage } from '../actions/chat.js'
 import '../styles/chat.css'
+import 'font-awesome/css/font-awesome.css'
 
 
 class Home extends Component {
@@ -41,19 +42,22 @@ class Home extends Component {
       <div id="mainContainer">
        
         <div id="test">
-        <h1>Functino</h1>
+         <h1>Functino</h1>
         </div>
+
         <div className="roomwrap">
+        
           <div id="room" ref="chatroom">
             <h2>ChatRoom</h2>
             {this.props.messages.map((m,i )=> (
-              <p key= {"message" + i} >{m.username}: {m.message}</p>
+              <p key= {"message" + i}><span>{m.username}</span>: {m.message}</p>
             ))}
           </div>
           <form id="chatbox" onSubmit={this.handleSubmit}>
             <input type="text" name="message" value={this.state.message} onChange={this.handleChange} autoComplete="off"/>
-            <button type="submit">Submit</button>
-        </form>
+            <button type="submit"><i class="fa fa-angle-up"></i></button>
+         </form>
+
         </div>
        
         
