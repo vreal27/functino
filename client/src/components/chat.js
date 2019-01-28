@@ -9,7 +9,11 @@ class Home extends Component {
   state = {
     message: ''
   }
-  
+  componentDidMount(){
+    if(!this.props.username) {
+      this.props.history.push('/')
+    }
+  }
   handleChange = e => {
     this.setState({
       [e.target.name]: e.target.value
@@ -18,12 +22,14 @@ class Home extends Component {
 
   handleSubmit = e => {
     e.preventDefault()
-    addMessage(this.state.message)
-    this.setState({
-      message: ''
+    addMessage({
+      message: this.state.message,
+      roomname: this.props.match.params.roomname
     })
 
   }
+
+ 
 
   componentWillUpdate() {
     var node = this.refs.chatroom
@@ -41,36 +47,34 @@ class Home extends Component {
     return (
       <div id="mainContainer">
        
-        <div id="test">
-         <h1>Functino</h1>
-        </div>
-
         <div className="roomwrap">
-        
-          <div id="room" ref="chatroom">
+
+          <div className="room" ref="chatroom">
             <h2>ChatRoom</h2>
             {this.props.messages.map((m,i )=> (
               <p key= {"message" + i}><span>{m.username}</span>: {m.message}</p>
             ))}
           </div>
-          <form id="chatbox" onSubmit={this.handleSubmit}>
+          <form className="chatbox" onSubmit={this.handleSubmit}>
             <input type="text" name="message" value={this.state.message} onChange={this.handleChange} autoComplete="off"/>
-            <button type="submit"><i class="fa fa-angle-up"></i></button>
+            <button type="submit"><i className="fa fa-angle-up"></i></button>
          </form>
 
         </div>
-       
         
        
       </div>
-    )
+    ) 
   }
 }
 
-function mapStateToProps(appState) {
-  // console.log('mapstate', appState.chatReducer.messages)
+function mapStateToProps(appState, ownProps) {
+  const roomname = ownProps.match.params.roomname
   return {
-    messages: appState.chatReducer.messages
+    username: appState.chatReducer.username,
+    messages: appState.chatReducer.messages.filter(m => m.roomname === roomname),
+    history: ownProps.history
+    
   }
 }
 

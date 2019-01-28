@@ -15,7 +15,7 @@ html {box-sizing: border-box}
 
 }
 
-#chatbox {
+.chatbox {
     border: solid 1px black;
     border-radius: 5px;
     margin: 20px 0;
@@ -24,12 +24,12 @@ html {box-sizing: border-box}
     align-self: center;
 }
 
-#room {
+.room {
     overflow: auto;
     height: 100%;
 }
 
-#room h2 {
+.room h2 {
     font-size: 20px;
     color: rgb(15, 219, 90);
     font-weight: lighter;
@@ -39,7 +39,7 @@ html {box-sizing: border-box}
     padding-bottom: 5px;
 }
 
-#room p {
+.room p {
     font-size: 15px;
     padding: 10px;
     border: solid 1px black;
@@ -49,7 +49,7 @@ html {box-sizing: border-box}
     word-wrap: break-word;
 }
 
-#room span {
+.room span {
     color: rgb(15, 219, 90);
 }
 
@@ -86,7 +86,7 @@ html {box-sizing: border-box}
 
 
 
-#chatbox input {
+.chatbox input {
     outline: none;
     padding-left: 10px;
     height: 50px;
@@ -95,7 +95,7 @@ html {box-sizing: border-box}
     border: none;
 }
 
-#chatbox button {
+.chatbox button {
     height: 49px;
     border: none;
     border-radius: 5px;
