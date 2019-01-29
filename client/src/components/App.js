@@ -21,7 +21,7 @@ class App extends Component {
               <li><Link to="/">Sign In</Link></li>
               <li><Link to="/main">Main</Link></li>
               <li><Link to="/random">Random</Link></li>
-              <li> <Link to="/createRoom">Create a room</Link></li>
+              <li> <Link to="/createRoom">Create/Join a room</Link></li>
             </ul>
             <Route exact path="/" component={Signin}/>
             <Route path="/createRoom" component={Roomlist}/>

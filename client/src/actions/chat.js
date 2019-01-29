@@ -39,6 +39,12 @@ export function addRoom(room) {
   })
 }
 
+export function leaveRoom(room) {
+  socket.emit('leave room', {
+    room: room
+  })
+}
+
 socket.on('new message', (message) => {
   store.dispatch({
     type: 'ADD_MESSAGE',

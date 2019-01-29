@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom' 
 import { addMessage } from '../actions/chat.js'
 import '../styles/chat.css'
 import 'font-awesome/css/font-awesome.css'
@@ -12,6 +13,7 @@ class Home extends Component {
   componentDidMount(){
     if(!this.props.username) {
       this.props.history.push('/')
+      alert('You need to log in first')
     }
   }
   handleChange = e => {
@@ -49,7 +51,14 @@ class Home extends Component {
   render() {
     return (
       <div id="mainContainer">
-       
+        <div className= "channelbox">
+          <h3>Rooms</h3>
+          <ul className="channels">
+            {this.props.rooms.map((r,i) =>(
+              <li key={"roomlist" + i}><Link to={'/' + r.room}>{r.room}</Link></li>
+            ))}
+          </ul>
+        </div>
         <div className="roomwrap">
 
           <div className="room" ref="chatroom">
@@ -76,7 +85,8 @@ function mapStateToProps(appState, ownProps) {
   return {
     username: appState.chatReducer.username,
     messages: appState.chatReducer.messages.filter(m => m.roomname === roomname),
-    history: ownProps.history
+    history: ownProps.history,
+    rooms: appState.chatReducer.rooms
     
   }
 }
