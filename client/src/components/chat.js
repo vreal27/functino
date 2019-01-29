@@ -26,6 +26,9 @@ class Home extends Component {
       message: this.state.message,
       roomname: this.props.match.params.roomname
     })
+    this.setState({
+      message:''
+    })
 
   }
 

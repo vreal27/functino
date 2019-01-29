@@ -1,0 +1,42 @@
+#listcontainer {
+    border-top: solid 1px black;
+    padding-left: 20px;
+}
+
+.newroomlist {
+    margin-left: 10px;
+    list-style: none;
+}
+
+.newroomlist a {
+    text-decoration: none;
+    color: rgb(15, 219, 90);
+}
+
+#listcontainer h1 {
+    font-size: 30px;
+    font-weight: lighter;
+    color: rgb(15, 219, 90);
+    margin-bottom: 10px;
+}
+
+.roombox{
+    margin-bottom: 10px;
+}
+
+input {
+    outline: none;
+    padding-left: 10px;
+    height: 20px;
+    width: 30%;
+    border-radius: 5px;
+    
+   
+}
+
+button {
+    height: 20px;
+    border-radius: 5px;
+    margin-bottom: 1px;
+    outline: none;
+}

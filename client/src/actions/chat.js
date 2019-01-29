@@ -4,9 +4,9 @@ import io from 'socket.io-client'
 
 axios.defaults.baseURL = '/api'
 
-// const socket = io.connect('http://localhost:3001') 
+const socket = io.connect('http://localhost:3001') 
 
-const socket = io.connect('http://192.168.0.83:3001')
+// const socket = io.connect('http://192.168.0.123:3001')
 
 
 export function addMessage(message) {
@@ -32,9 +32,24 @@ export function createUsername(username) {
   return promise
 }
 
+
+export function addRoom(room) {
+  socket.emit('new room', {
+    room: room
+  })
+}
+
 socket.on('new message', (message) => {
   store.dispatch({
     type: 'ADD_MESSAGE',
     message: message
   })
 })
+
+socket.on('channel list', (rooms) => {
+  store.dispatch({
+    type: 'CHANNEL_LIST',
+    rooms: rooms
+  })
+})
+

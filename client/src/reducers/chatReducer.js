@@ -1,6 +1,7 @@
 const initialState = {
   messages: [],
-  username: ''
+  username: '',
+  rooms: []
 }
 
 export default function (state = initialState, action) {
@@ -10,7 +11,9 @@ export default function (state = initialState, action) {
       return {...state, username: action.username}
     case 'ADD_MESSAGE':
       return {...state, messages:[action.message,...state.messages]}
-      default:
+    case 'CHANNEL_LIST':
+      return {...state, rooms: action.rooms}
+    default:
       return state
   }
 }
