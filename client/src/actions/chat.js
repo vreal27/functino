@@ -34,15 +34,11 @@ export function createUsername(username) {
 
 
 export function addRoom(room) {
-  socket.emit('new room', {
-    room: room
-  })
+  socket.emit('new room', room)
 }
 
 export function leaveRoom(room) {
-  socket.emit('leave room', {
-    room: room
-  })
+  socket.emit('leave room', room)
 }
 
 socket.on('new message', (message) => {
@@ -52,10 +48,18 @@ socket.on('new message', (message) => {
   })
 })
 
-socket.on('channel list', (rooms) => {
+socket.on('channel list', (room) => {
   store.dispatch({
     type: 'CHANNEL_LIST',
-    rooms: rooms
+    rooms: room
+  })
+})
+
+socket.on('left room', (room) => {
+  console.log('room', room.room)
+  store.dispatch({
+    type:'LEFT_ROOM',
+    leave: room.room
   })
 })
 

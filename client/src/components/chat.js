@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom' 
-import { addMessage } from '../actions/chat.js'
+import { addMessage, leaveRoom } from '../actions/chat.js'
 import '../styles/chat.css'
 import 'font-awesome/css/font-awesome.css'
 
@@ -13,7 +13,7 @@ class Home extends Component {
   componentDidMount(){
     if(!this.props.username) {
       this.props.history.push('/')
-      alert('You need to log in first')
+      alert('Create a username')
     }
   }
   handleChange = e => {
@@ -34,6 +34,12 @@ class Home extends Component {
 
   }
 
+  handleExit = e => {
+    e.preventDefault()
+    leaveRoom(this.props.roomname)
+    alert('You have left this room')
+  }
+
  
 
   componentWillUpdate() {
@@ -52,24 +58,38 @@ class Home extends Component {
     return (
       <div id="mainContainer">
         <div className= "channelbox">
-          <h3>Rooms</h3>
+        
+          <h3>[ Rooms ]</h3>
+        
           <ul className="channels">
             {this.props.rooms.map((r,i) =>(
-              <li key={"roomlist" + i}><Link to={'/' + r.room}>{r.room}</Link></li>
+              <li key={"roomlist" + i}><Link to={'/' + r}>{r}</Link></li>
             ))}
           </ul>
+        
         </div>
+       
         <div className="roomwrap">
 
           <div className="room" ref="chatroom">
-            <h2>ChatRoom</h2>
+        
+            <h2>[ ChatRoom ]</h2>
+        
+            <form className="leave" onSubmit={this.handleExit}>
+              <button type="submit">Leave Room <i class="fa fa-rocket"></i></button>
+             </form>
+            
             {this.props.messages.map((m,i )=> (
               <p key= {"message" + i}><span>{m.username}</span>: {m.message}</p>
             ))}
+          
           </div>
+        
           <form className="chatbox" onSubmit={this.handleSubmit}>
+        
             <input type="text" name="message" value={this.state.message} onChange={this.handleChange} autoComplete="off"/>
             <button type="submit"><i className="fa fa-angle-up"></i></button>
+        
          </form>
 
         </div>
@@ -86,8 +106,8 @@ function mapStateToProps(appState, ownProps) {
     username: appState.chatReducer.username,
     messages: appState.chatReducer.messages.filter(m => m.roomname === roomname),
     history: ownProps.history,
-    rooms: appState.chatReducer.rooms
-    
+    rooms: appState.chatReducer.rooms,
+    roomname: roomname
   }
 }
 

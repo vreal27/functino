@@ -12,7 +12,11 @@ export default function (state = initialState, action) {
     case 'ADD_MESSAGE':
       return {...state, messages:[action.message,...state.messages]}
     case 'CHANNEL_LIST':
-      return {...state, rooms: action.rooms}
+      return {...state, rooms: [...state.rooms, action.rooms]}
+    case 'LEFT_ROOM': 
+    console.log('stateofrooms', state.rooms)
+    let filter = state.rooms.filter(e => e !== action.leave)
+      return {...state, rooms: filter}
     default:
       return state
   }

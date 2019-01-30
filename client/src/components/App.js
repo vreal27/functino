@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Provider } from 'react-redux'
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom' 
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom' 
 import '../styles/chat.css'
 import store from '../store'
 
@@ -23,9 +23,11 @@ class App extends Component {
               <li><Link to="/random">Random</Link></li>
               <li> <Link to="/createRoom">Create/Join a room</Link></li>
             </ul>
-            <Route exact path="/" component={Signin}/>
-            <Route path="/createRoom" component={Roomlist}/>
-            <Route path="/:roomname"  component={Chat} />
+            <Switch>
+              <Route exact path="/" component={Signin}/>
+              <Route path="/createRoom"  component={Roomlist}/>
+              <Route path="/:roomname"  component={Chat} />
+            </Switch>
           </div>
         </Router>
       </Provider>

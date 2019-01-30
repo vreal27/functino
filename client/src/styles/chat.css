@@ -1,13 +1,14 @@
 html {
     box-sizing: border-box;
     font-family: Arial, Helvetica, monospace;
+    background-color: black;
+    background-image: url(https://images.unsplash.com/photo-1503264116251-35a269479413?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80);
 }
 *, *::before, *::after {box-sizing: inherit}
 
 
 #mainContainer {
     height: 500px;
-    border: solid 1px black;
     font-weight: lighter;
     font-size: 20px;
     display: flex;
@@ -60,9 +61,9 @@ html {
     padding-left: 10px;
     margin: 20px 20px;
     margin-right: 0;
-    height:400px;
+    height:500px;
     border: solid 1px black;
-    background-color: rgba(213, 213, 213, 0.988);
+    background-color: rgba(213, 213, 213, .5);
 }
 
 
@@ -74,22 +75,27 @@ html {
     height: 50px;
     width: 100%;
     border-radius: 5px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
     border: none;
+    background-color: rgba(213, 213, 213, .5);
 }
 
 .chatbox button {
     height: 49px;
     border: none;
+    border-left: solid 1px black;
     border-radius: 5px;
-    margin-bottom: 1px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
     outline: none;
+    background-color: rgba(213, 213, 213, .5);
 }
 
 .navlinks {
     display: flex;
     list-style: none;
     border: solid 1px black;
-    border-bottom: none;
     margin-bottom: 0;
 }
 
@@ -124,7 +130,7 @@ html {
     margin: 20px 0;
     border: solid 1px black;
     padding: 10px;
-    background-color: rgba(213, 213, 213, 0.988);
+    background-color: rgba(213, 213, 213, 0.5);
 
 }
 
@@ -134,4 +140,12 @@ html {
     font-weight: lighter;
     border-bottom: solid 1px black;
     padding-bottom: 5px;
+}
+
+.leave button {
+    color:  rgb(15, 219, 90);
+    font-size: 12px;
+    height: 30px;
+    background-color: rgba(39, 37, 37, 0.5);
+    border: none;
 }

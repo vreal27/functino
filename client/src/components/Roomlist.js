@@ -12,10 +12,13 @@ class RoomList extends Component {
 
     handleSubmit= e => {
         e.preventDefault()
-        addRoom(this.state.room)
-        this.setState({
-            room:''
-          })
+        if(!this.props.rooms.includes(this.state.room)){
+            addRoom(this.state.room)
+            this.setState({
+                room:''
+              })
+        }
+       
     }
 
     handleChange = e => {
@@ -30,13 +33,12 @@ class RoomList extends Component {
                 <h1>[ New Channels ]</h1>
                 <ul className="newroomlist">
                     {this.props.rooms.map((r, i) => {
-                        console.log(r)
-                        return <li key={"room" + i}><Link to={"/" + r.room}>{r.room}</Link></li>
+                        return <li key={"room" + i}><Link to={"/" + r}>{r}</Link></li>
                     })}
                 </ul>
                 <form className="roombox" onSubmit={this.handleSubmit}>
                     <input type="text" name="room" value={this.state.room} onChange={this.handleChange} autoComplete="off"/>
-                    <button type="submit">submit</button>
+                    <button type="submit">Join</button>
                 </form>
 
             </div>

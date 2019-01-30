@@ -5,7 +5,6 @@ import socketio from 'socket.io'
 export default function(server) {
   const io = socketio(server)
 
-  const rooms = []
   
   io.on('connection', function(socket){
     socket.join('main')
@@ -15,16 +14,21 @@ export default function(server) {
       
     })
     socket.on('new room', (room) => {
-      rooms.push(room)
+   
+      socket.join(room)
+      
+      socket.emit('channel list', room)
 
-      io.emit('channel list', rooms)
-
-     socket.join(room.room)
+     
 
     })
 
     socket.on('leave room', (room) => {
+     
       socket.leave(room)
+      socket.emit('left room', room)
+
+      
     })
     
 
