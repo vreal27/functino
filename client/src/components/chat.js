@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom' 
-import { addMessage, leaveRoom } from '../actions/chat.js'
+import { addMessage, leaveRoom, joinRoom } from '../actions/chat.js'
 import '../styles/chat.css'
 import 'font-awesome/css/font-awesome.css'
 
@@ -40,6 +40,12 @@ class Home extends Component {
     alert('You have left this room')
   }
 
+  handleJoin = e => {
+    e.preventDefault()
+    joinRoom(this.props.roomname)
+    alert(`You're back in!`)
+  }
+
  
 
   componentWillUpdate() {
@@ -74,10 +80,16 @@ class Home extends Component {
           <div className="room" ref="chatroom">
         
             <h2>[ ChatRoom ]</h2>
-        
-            <form className="leave" onSubmit={this.handleExit}>
-              <button type="submit">Leave Room <i class="fa fa-rocket"></i></button>
-             </form>
+            
+            <div className="buttonbox">
+              <form className="leave" onSubmit={this.handleExit}>
+                <button type="submit">Leave<i class="fa fa-rocket"></i></button>
+              </form>
+              <form className="join" onSubmit={this.handleJoin}>
+                <button type="submit">Join<i class="fa fa-rocket"></i></button>
+              </form>
+            </div>
+           
             
             {this.props.messages.map((m,i )=> (
               <p key= {"message" + i}><span>{m.username}</span>: {m.message}</p>

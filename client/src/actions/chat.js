@@ -4,9 +4,9 @@ import io from 'socket.io-client'
 
 axios.defaults.baseURL = '/api'
 
-const socket = io.connect('http://localhost:3001') 
+// const socket = io.connect('http://localhost:3001') 
 
-// const socket = io.connect('http://192.168.0.123:3001')
+const socket = io.connect('http://192.168.0.123:3001')
 
 
 export function addMessage(message) {
@@ -41,6 +41,10 @@ export function leaveRoom(room) {
   socket.emit('leave room', room)
 }
 
+export function joinRoom(room){
+  socket.emit('re-join room', room)
+}
+
 socket.on('new message', (message) => {
   store.dispatch({
     type: 'ADD_MESSAGE',
@@ -62,4 +66,6 @@ socket.on('left room', (room) => {
     leave: room.room
   })
 })
+
+
 

@@ -13,6 +13,7 @@ export default function(server) {
       io.to(message.roomname).emit('new message', message)
       
     })
+    // creates a room
     socket.on('new room', (room) => {
    
       socket.join(room)
@@ -22,7 +23,7 @@ export default function(server) {
      
 
     })
-
+    // leave current room
     socket.on('leave room', (room) => {
      
       socket.leave(room)
@@ -31,7 +32,11 @@ export default function(server) {
       
     })
     
-
+    // re-join room
+    socket.on('re-join room', (room) => {
+      socket.join(room)
+      socket.emit('re-joined room', room)
+    })
 
     console.log('User has connected to socket server')
   }) 
