@@ -4,9 +4,9 @@ import io from 'socket.io-client'
 
 axios.defaults.baseURL = '/api'
 
-// const socket = io.connect('http://localhost:3001') 
+const socket = io.connect('http://localhost:3001') 
 
-const socket = io.connect('http://192.168.0.123:3001')
+// const socket = io.connect('http://192.168.0.123:3001')
 
 
 export function addMessage(message) {
@@ -15,22 +15,33 @@ export function addMessage(message) {
   socket.emit('new message', {
     roomname: message.roomname,
     username: username,
-    message: message.message
+    message: message.message,
+    bold: message.bold,
+    italic: message.italic,
+    underline: message.underline
   })
 }
 
-export function createUsername(username) {
-  var promise = new Promise((resolve, reject) => {
-    store.dispatch({
-      type: 'SIGN_IN',
-      username: username
-    })
-
-    resolve()
+export function registerUser(username, password) {
+  return axios.post('/register',{
+    username: username,
+    password: password
   })
-
-  return promise
+  
 }
+
+// export function createUsername(username) {
+//   var promise = new Promise((resolve, reject) => {
+//     store.dispatch({
+//       type: 'SIGN_IN',
+//       username: username
+//     })
+
+//     resolve()
+//   })
+
+//   return promise
+// }
 
 
 export function addRoom(room) {
@@ -44,6 +55,8 @@ export function leaveRoom(room) {
 export function joinRoom(room){
   socket.emit('re-join room', room)
 }
+
+
 
 socket.on('new message', (message) => {
   store.dispatch({

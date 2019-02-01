@@ -1,6 +1,7 @@
 #listcontainer {
     border-top: solid 1px black;
     padding-left: 20px;
+
 }
 
 .newroomlist {
@@ -20,6 +21,12 @@
     margin-bottom: 10px;
 }
 
+#listcontainer h2 {
+    font-size: 15px;
+    font-weight: lighter;
+    color: rgb(15, 219, 90);
+    margin-bottom: 20px;
+}
 .roombox{
     margin-bottom: 10px;
 }
@@ -47,6 +54,7 @@ button {
     border-radius: 5px;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
+    color: rgb(15, 219, 90);
     outline: none;
     background-color: rgba(213, 213, 213, .5);
 }

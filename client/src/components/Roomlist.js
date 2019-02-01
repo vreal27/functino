@@ -31,6 +31,7 @@ class RoomList extends Component {
         return (
             <div id="listcontainer">
                 <h1>[ New Channels ]</h1>
+                <h2>[ click to join ]</h2>
                 <ul className="newroomlist">
                     {this.props.rooms.map((r, i) => {
                         return <li key={"room" + i}><Link to={"/" + r}>{r}</Link></li>
@@ -38,7 +39,7 @@ class RoomList extends Component {
                 </ul>
                 <form className="roombox" onSubmit={this.handleSubmit}>
                     <input type="text" name="room" value={this.state.room} onChange={this.handleChange} autoComplete="off"/>
-                    <button type="submit">Join</button>
+                    <button type="submit"><i className="fa fa-plus"></i></button>
                 </form>
 
             </div>

@@ -13,6 +13,7 @@ export default function(server) {
       io.to(message.roomname).emit('new message', message)
       
     })
+    
     // creates a room
     socket.on('new room', (room) => {
    

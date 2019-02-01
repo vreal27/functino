@@ -3,9 +3,14 @@ html {
     font-family: Arial, Helvetica, monospace;
     background-color: black;
     background-image: url(https://images.unsplash.com/photo-1503264116251-35a269479413?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80);
+    background-size: cover;
     background-repeat: no-repeat;
+
+
 }
 *, *::before, *::after {box-sizing: inherit}
+
+
 
 
 #mainContainer {
@@ -43,17 +48,17 @@ html {
     padding-bottom: 5px;
 }
 
-.room p {
+.message {
     font-size: 15px;
     padding: 10px;
     border: solid 1px black;
     border-radius: 5px;
     width: 300px;
-    margin-left: 10px;
+    margin-left: 10px; 
     word-wrap: break-word;
 }
 
-.room span {
+.colorGreen {
     color: rgb(15, 219, 90);
 }
 
@@ -75,14 +80,14 @@ html {
     padding-left: 10px;
     height: 50px;
     width: 100%;
-    border-radius: 5px;
+    border-radius: 5px; 
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
     border: none;
     background-color: rgba(213, 213, 213, .5);
 }
 
-.chatbox button {
+#submitButton {
     height: 49px;
     border: none;
     border-left: solid 1px black;
@@ -143,15 +148,42 @@ html {
     padding-bottom: 5px;
 }
 
-.leave button, .join button {
+ .buttonbox #lbutton, #jbutton {
     color:  rgb(15, 219, 90);
     font-size: 12px;
     height: 30px;
     background-color: rgba(39, 37, 37, 0.5);
     border: none;
+    border-radius: 5px;
     margin: 5px;
 }
 
 .buttonbox {
     display: flex;
+}
+
+.timestamp {
+    display: inline-block;
+    font-size: 12px;
+    margin-left: 60px;
+}
+
+
+.message {
+    display: inline-block;
+    margin-left: 5px;
+}
+.fontbutton {
+    color: rgb(15, 219, 90);
+    background-color: rgba(39, 37, 37, 0.7);
+    border-radius: 5px;
+    font-size: 16px;
+    margin-right: 5px;
+    width: 40px;
+}
+
+.fontbutton:active {
+    font-size: 12px;
+    height: 20px;
+    width: 30px;
 }
